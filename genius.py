@@ -4,31 +4,33 @@ from operator import attrgetter
 import os
 import time
 
+
 class No:
-    
-    def __init__(self,cor):
+
+    def __init__(self, cor):
         self.cor = cor
         self.prox = None
+
 
 class Jogador:
     nome = ''
     pontuacao = 0
 
+
 class Genius:
-    
+
     def __init__(self):
         self.primeiro = None
 
     def gerarCor(self):
         nodo = No(randint(1, 4))
-        if self.primeiro == None: #se a lista eh vazia, o processo eh o mesmo de inserir no inicio
+        if self.primeiro == None:  # se a lista eh vazia, o processo eh o mesmo de inserir no inicio
             self.primeiro = nodo
         else:
             atual = self.primeiro
-            while atual.prox != None: #senao, percorre-se a lista ate chegar ao final
-                atual = atual.prox    #e fazemos o ultimo elemento apontar para nodo em vez de para Null
-            atual.prox  = nodo
-
+            while atual.prox != None:  # senao, percorre-se a lista ate chegar ao final
+                atual = atual.prox  # e fazemos o ultimo elemento apontar para nodo em vez de para Null
+            atual.prox = nodo
 
     def mostraSequencia(self, dificuldade):
         os.system('cls')
@@ -43,11 +45,11 @@ class Genius:
             elif atual.cor == 4:
                 corTexto = Fore.YELLOW
             atual = atual.prox
-            print(corTexto + '#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' + '#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100 + '\n' +'#'*100)
+            print(
+                corTexto + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100 + '\n' + '#' * 100)
             time.sleep(dificuldade)
             os.system('cls')
         print(Style.RESET_ALL)
-
 
     def mostraResposta(self, respostaJogador):
         atual = self.primeiro
@@ -62,18 +64,18 @@ class Genius:
         print(f'Resposta correta: {respostaCorreta[:-2]}')
         print(f'Sua resposta foi: {respostaErrada[:-2]}')
 
-
     def recebeResposta(self, jogador, dificuldade):
         os.system('cls')
         atual = self.primeiro
         respostaJogador = []
         print('-=-=-=-=-=-Cores-=-=-=-=-=-')
-        print(Fore.RED + '[1] Vermelho\n' + Fore.GREEN + '[2] Verde\n' + Fore.BLUE + '[3] Azul\n' + Fore.YELLOW + '[4] Amarelo' + Style.RESET_ALL)
+        print(
+            Fore.RED + '[1] Vermelho\n' + Fore.GREEN + '[2] Verde\n' + Fore.BLUE + '[3] Azul\n' + Fore.YELLOW + '[4] Amarelo' + Style.RESET_ALL)
         print('-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n')
         while atual != None:
             resposta = int(input('Insira sua resposta: '))
             respostaJogador.append(resposta)
-            if atual.cor != resposta :
+            if atual.cor != resposta:
                 os.system('cls')
                 self.mostraResposta(respostaJogador)
                 print(f'\nSua pontuação foi de {jogador.pontuacao:.0f}')
@@ -82,18 +84,19 @@ class Genius:
                 return 0
 
             jogador.pontuacao += 1 / dificuldade
-            print(str(jogador.pontuacao))
             atual = atual.prox
         return 1
 
-def ordenaRanking(ranking): #bubble sort, ordena CRESCENTE
+
+def ordenaRanking(ranking):  # bubble sort, ordena CRESCENTE
     if len(ranking) == 0:
         print('Lista Vazia!')
     else:
         for i in range(len(ranking)):
-            for j in range(len(ranking)-1):
-                if ranking[j].pontuacao < ranking[j+1].pontuacao:
-                    ranking[j], ranking[j+1] = ranking[j+1], ranking[j]
+            for j in range(len(ranking) - 1):
+                if ranking[j].pontuacao < ranking[j + 1].pontuacao:
+                    ranking[j], ranking[j + 1] = ranking[j + 1], ranking[j]
+
 
 def iniciaJogo(ranking, dificuldade):
     genius = Genius()
@@ -107,12 +110,13 @@ def iniciaJogo(ranking, dificuldade):
     if len(ranking) < 5:
         ranking.append(jogador)
     else:
-        ultimoJogador = min(ranking,key=attrgetter('pontuacao'))
+        ultimoJogador = min(ranking, key=attrgetter('pontuacao'))
         if jogador.pontuacao > ultimoJogador.pontuacao:
             ranking[ranking.index(ultimoJogador)] = jogador
 
     ordenaRanking(ranking)
     os.system('cls')
+
 
 def mostraRanking(ranking):
     os.system('cls')
@@ -125,7 +129,9 @@ def mostraRanking(ranking):
     input()
     os.system('cls')
 
+
 def selecionaDificuldade():
+    os.system('cls')
     print('-=-=-=-=-=-Dificuldades-=-=-=-=-=-')
     print('[1] Normal')
     print('[2] Difícil')
@@ -145,17 +151,18 @@ def selecionaDificuldade():
     os.system('cls')
     return dificuldade
 
+
 ranking = []
 opcao = 1
 dificuldade = 1
-while(opcao != 0):
+while (opcao != 0):
     os.system('cls')
     print('-=-=-=-=-=-=-=-=-=-')
     print('1 - Novo Jogo')
     print('2 - Ranking')
     print("3 - Dificuldade")
-    #print("4 - Regras")
-    #print("5 - Modo daltônico")
+    # print("4 - Regras")
+    # print("5 - Modo daltônico")
     print('0 - sair')
     print('-=-=-=-=-=-=-=-=-=-')
     opcao = int(input('Digite a opção desejada: '))
@@ -168,16 +175,6 @@ while(opcao != 0):
         dificuldade = selecionaDificuldade()
     elif (opcao == 0):
         break
-
-
-
-
-
-
-
-
-
-
 
 print(' /\/\             /\/\ ')
 print('(=´T´) Até mais! (`T`=)')
