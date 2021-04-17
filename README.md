@@ -5,10 +5,12 @@
     <img src="img/amarelo.png"></li>
     <img src="img/verde.png"></li>
 </h1>
-
-<p align="center">
-    <img src="img/menu.png">
-    <img src="img/erros-pontuacao.png">
-    <img src="img/dificuldades.png">
-    <img src="img/erros-pontuacao.png">
-</p>
+<h2>Projeto</h2>
+<p>Menu </p>
+<img src="img/menu.png">
+<p>Caso o usuário erre a resposta, é mostrado a sequência correta e o erro do jogador</p>
+<img src="img/erros-pontuacao.png">
+<p>É possível também escolher a dificuldade, o que reflete na pontuação do jogador</p>
+<img src="img/dificuldades.png">
+<p>Um ranking dos 5 melhores jogadores é criado</p>
+<img src="img/ranking.png">
